@@ -8,20 +8,9 @@ namespace log4net.Appender
     {
         public AzureDynamicLoggingEventEntity(LoggingEvent e, PartitionKeyTypeEnum partitionKeyType)
         {
-            this["Domain"] = e.Domain;
-            this["Identity"] = e.Identity;
             this["Level"] = e.Level.ToString();
-            this["LoggerName"] = e.LoggerName;
-            this["Message"] = e.RenderedMessage + Environment.NewLine + e.GetExceptionString();
-            this["EventTimeStamp"] = e.TimeStamp;
-            this["ThreadName"] = e.ThreadName;
-            this["UserName"] = e.UserName;
-            this["Location"] = e.LocationInformation.FullInfo;
-
-            if (e.ExceptionObject != null)
-            {
-                this["Exception"] = e.ExceptionObject.ToString();
-            }
+            this["Message"] = e.RenderedMessage;
+            this["Timestamp"] = e.TimeStamp;
             
             foreach (DictionaryEntry entry in e.Properties)
             {
